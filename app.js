@@ -9,7 +9,7 @@ const cors = require("cors");
 const users = require("./routes/users");
 const listdetails = require("./routes/listdetails");
 const lists = require("./routes/lists");
-const path = require("path");
+// const path = require("path");
 const app = express();
 
 //----------------------------Middleware-----------------------------------------
@@ -21,7 +21,7 @@ app.use(cors());
 // );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "../grocery-list-frontend/build")));
+// app.use(express.static(path.join(__dirname, "../grocery-list-frontend/build")));
 //----------------------------- DB Config---------------------------------------------------
 
 try {
