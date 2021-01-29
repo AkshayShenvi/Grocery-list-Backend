@@ -51,7 +51,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 //-------------------------------- Routes Middleware -------------------------------
 app.use("/listdetails", listdetails);
