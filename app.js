@@ -13,7 +13,7 @@ const lists = require("./routes/lists");
 const app = express();
 
 //----------------------------Middleware-----------------------------------------
-app.use(cors());
+// app.use(cors());
 // {
 //     origin: "https://grocery-list-webapp.herokuapp.com", // <-- location of the react app were connecting to
 //     credentials: true,
