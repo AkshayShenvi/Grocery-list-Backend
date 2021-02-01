@@ -25,13 +25,11 @@ app.use(bodyParser.json());
 //----------------------------- DB Config---------------------------------------------------
 
 try {
-  mongoose.connect(
-    `mongodb+srv://mongodb:${process.env.DB_PASSWORD}@akshaycluster.bkck6.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  );
+  const mongo_uri = `mongodb+srv://mongodb:${process.env.DB_PASSWORD}@akshaycluster.bkck6.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+  mongoose.connect(mongo_uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
   console.log("Connected");
 } catch (error) {
   console.log(error);
@@ -58,9 +56,9 @@ app.use("/listdetails", listdetails);
 app.use("/lists", lists);
 app.use("/api/users", users);
 
-app.get('/', (req,res) => { 
-  res.send("Working")
-})
+app.get("/", (req, res) => {
+  res.send("Working");
+});
 // app.get("*", (req, res) => {
 //   res.sendFile(
 //     path.join(__dirname, "../grocery-list-frontend/build/index.html")
@@ -68,6 +66,6 @@ app.get('/', (req,res) => {
 // });
 
 const port = process.env.PORT || 3000;
-app.listen(port,  ()=> {
+app.listen(port, () => {
   console.log("App is running on port: " + port);
 });
