@@ -13,12 +13,11 @@ const lists = require("./routes/lists");
 const app = express();
 
 //----------------------------Middleware-----------------------------------------
-app.use(
-  cors({
-    origin: "https://grocery-app-frontend.herokuapp.com/", // <-- location of the react app were connecting to
-    credentials: true,
-  })
-);
+app.use(cors());
+//     origin: "https://grocery-app-frontend.herokuapp.com/", // <-- location of the react app were connecting to
+//     credentials: true,
+//   })
+// );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, "../grocery-list-frontend/build")));
