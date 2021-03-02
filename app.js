@@ -24,12 +24,23 @@ app.use(bodyParser.json());
 //----------------------------- DB Config---------------------------------------------------
 
 try {
-  const mongo_uri = `mongodb+srv://mongodb:${process.env.DB_PASSWORD}@akshaycluster.bkck6.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+  // if (process.env.NODE_ENV === "development") {
+  //   const mongo_uri = `mongodb://localhost:${process.env.DB_PORT}/${process.env.DB_NAME}?readPreference=primary&appname=MongoDB%20Compass&ssl=false`;
+
+  //   mongoose.connect(mongo_uri, {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //   });
+  //   console.log("DB Connected");
+  // } else {
+  const mongo_uri = process.env.DB_ENDPOINT; //`mongodb+srv://mongodb:${process.env.DB_PASSWORD}@akshaycluster.bkck6.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+
   mongoose.connect(mongo_uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  console.log("Connected");
+  console.log("DB Connected");
+  // }
 } catch (error) {
   console.log(error);
 }
