@@ -14,7 +14,6 @@ const User = require("../models/Usermodels");
 // Routes
 
 router.post("/register", (req, res) => {
-  
   const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
@@ -48,7 +47,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  
+  console.log("Reached");
   const { errors, isValid } = validateLoginInput(req.body);
 
   // Check validation
@@ -79,8 +78,7 @@ router.post("/login", (req, res) => {
         jwt.sign(
           payload,
           process.env.SECRETORKEY,
-            
-          
+
           {
             expiresIn: 31556926, // 1 year in seconds
           },
