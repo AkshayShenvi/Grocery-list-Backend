@@ -96,8 +96,6 @@ router.patch("/checkeditem", (req, res) => {
   listItem = req.body.items;
   listType = req.body.listtype;
 
-  
-
   List.findOne({ _id: listId }, (err, list) => {
     if (err) {
       res.status(400).send(err);
@@ -106,7 +104,7 @@ router.patch("/checkeditem", (req, res) => {
         for (let i = 0; i < listItem.length; i++) {
           // console.log(listItem[i]._id === item._id.toString());
           if (listItem[i]._id === item._id.toString()) {
-            console.log("reached")
+            console.log("reached");
             item.listtype = listType;
           }
         }
@@ -161,5 +159,22 @@ router.get("/orderedlist", (req, res) => {
       res.status(200).send(newData);
     }
   });
+});
+router.patch("/updateitem", (req, res) => {
+  const listid = req.body.listid;
+  const itemid = req.body.itemid;
+  const item = req.body.item;
+  List.updateOne(
+    { _id: listid },
+    { $set: { "items.$[element].item": item } },
+    { arrayFilters: [{ "element._id": itemid }] },
+    (err, response) => {
+      if (err) {
+        res.send(400).send(err);
+      } else {
+        res.status(200).send(response);
+      }
+    }
+  );
 });
 module.exports = router;
